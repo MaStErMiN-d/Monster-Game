@@ -69,7 +69,10 @@ public class StartMenuGUI extends JFrame {
 //		main.add(exitGamePane);
 	}
 	
+<<<<<<< HEAD
 	public static void main(String[] args){
 		StartMenuGUI asdf = new StartMenuGUI();
 	}
+=======
+>>>>>>> master
 }
