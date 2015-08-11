@@ -10,6 +10,7 @@ public class Loading {
 	LinkedList<Monsters> monstersInGame;
 	Player player;
 
+	//TODO implement final loading variables
 	public Loading() {
 
 		load();
@@ -29,7 +30,7 @@ public class Loading {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
 					"Savegame.save"));
 			monstersInGame = (LinkedList<Monsters>) ois.readObject();
-			player = monstersInGame.removeLast();
+			
 			ois.close();
 
 		} catch (Exception e) {
