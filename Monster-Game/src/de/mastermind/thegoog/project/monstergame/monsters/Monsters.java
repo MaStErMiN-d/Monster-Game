@@ -2,6 +2,9 @@ package de.mastermind.thegoog.project.monstergame.monsters;
 
 import java.io.Serializable;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
+import de.mastermind.thegoog.project.monstergame.utils.Utils;
+
 /**
  * 
  * @author Michael Zigldrum
@@ -102,9 +105,9 @@ public class Monsters implements Serializable {
 	 * @param dmg
 	 */
 	public void setDamage(long dmg) {
-		if (dmg <= 0) {
+		if (dmg < 0) {
 			throw new IllegalArgumentException(
-					"No Monster with 0 or less Damage allowed!");
+					"No Monster with less than 0 Damage allowed!");
 		} else {
 			this.damage = dmg;
 		}
@@ -151,12 +154,11 @@ public class Monsters implements Serializable {
 	 * @param dmg
 	 */
 	public void applyDamage(long dmg) {
-		// TODO schaden aller höhe erlauben, aber leben auf 0
-		if (dmg <= 0) {
+		if (dmg < 0) {
 			throw new IllegalArgumentException(
 					"No Monster with 0 or less Damage allowed!");
 		} else {
-			if (health < dmg) {
+			if (health <= dmg) {
 				health = 0;
 				this.die();
 			} else {
@@ -188,10 +190,28 @@ public class Monsters implements Serializable {
 	 */
 	private void die() {
 		appearance = AppearanceTypes.Invisible;
-		this.setDamage(0);
+		if (!(this.getClass() == Player.class)) {
+			this.setDamage(0);
+		}
 		// TODO Monster dies
 	}
 
 	// TODO Think of more Methods required of Monsters.
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		Monsters monster = (Monsters) obj;
+		return ((this.appearance == monster.appearance)
+				&& (this.bounty == monster.bounty)
+				&& (this.damage == monster.damage)
+				&& (this.element == monster.element)
+				&& (this.health == monster.health) && (this.isBoss == monster.isBoss));
+	}
 }

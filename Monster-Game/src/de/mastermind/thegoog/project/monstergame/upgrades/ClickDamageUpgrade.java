@@ -1,5 +1,6 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
 import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
@@ -57,7 +58,7 @@ public class ClickDamageUpgrade {
 		player.setClickDamage(clickDamage + this.clickDamageUpgrade);
 
 		Scaling.updateClickDamageUpgrade(this);
-		level++;
+		this.level++;
 	}
 
 	/**
@@ -81,5 +82,18 @@ public class ClickDamageUpgrade {
 	 */
 	protected void updateClickDamageUpgrade(long newValue) {
 		this.clickDamageUpgrade = newValue;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		ClickDamageUpgrade cdu = (ClickDamageUpgrade) obj;
+		return ((this.clickDamageUpgrade == cdu.clickDamageUpgrade)
+				&& (this.level == cdu.level) && (this.price == cdu.price));
 	}
 }
