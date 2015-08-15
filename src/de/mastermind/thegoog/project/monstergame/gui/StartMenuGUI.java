@@ -8,55 +8,71 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class StartMenuGUI {
+public class StartMenuGUI extends JFrame {
 
-	JFrame mainFrame;
-	JPanel panel;
+	BufferedImage img;
+	JFrame main;
+	JPanel contentPane;
+	JLabel bimg;
+	
 	JButton newGame;
 	JButton loadGame;
-	JButton exit;
-	JLabel bckgrndImage;
-	BufferedImage image;
+	JButton exitGame;
+	
+	JPanel newGamePane;
+	JPanel loadGamePane;
+	JPanel exitGamePane;
 	public StartMenuGUI(){
-		init();
-	}
-	
-	private void init(){
-	      try {                
-	          image = ImageIO.read(new File("Monster-Game-Title-Screen.png"));
-	       } catch (IOException ex) {
-	           ex.printStackTrace();
-	       }
-	      
-		mainFrame = new JFrame("Monster Game");
-		mainFrame.setSize(500, 500);
-		mainFrame.setLocation(350, 150);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
 		
-		JLabel bimage = new JLabel(new ImageIcon(image));
+		try {
+		    img = ImageIO.read(new File("Monster-Game-Title-Screen.png"));
+		} catch (IOException e) {
+		}
 		
-		panel = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		main = new JFrame();
+		main.setSize(500, 500);
+		main.setLocation(300, 150);
+		main.setVisible(true);
+		main.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		main.setTitle("Monster Game");
+		
+		bimg = new JLabel(new ImageIcon(img));
+		bimg.setOpaque(false);
+		contentPane = new JPanel();
+		contentPane.add(bimg);
+		
+		newGamePane = new JPanel();
+		newGamePane.setSize(20,90);
 		newGame = new JButton("New Game");
-		loadGame =  new JButton("Load Game");
-		exit = new JButton("Exit Game");
+		newGame.setSize(20, 90);
+		newGamePane.add(newGame);
 		
+		loadGamePane = new JPanel();
+		loadGamePane.setSize(20,90);
+		loadGame = new JButton("Load Game");
+		loadGame.setSize(20, 90);
+		loadGamePane.add(loadGame);
 		
-		c.gridx = 1;
-		c.gridy = 1;
-		c.anchor = c.PAGE_START;
-		panel.add(newGame,c);
-		c.anchor = c.CENTER;
-		c.gridy = c.RELATIVE;
-		panel.add(loadGame,c);
-		c.anchor = c.PAGE_END;
-		panel.add(exit,c);
+		exitGamePane = new JPanel();
+		exitGamePane.setSize(20, 90);
+		exitGame = new JButton("Exit Game");
+		exitGame.setSize(20, 90);
+		exitGamePane.add(exitGame);
+
+		contentPane.add(exitGamePane);
+		contentPane.add(loadGamePane);
+		contentPane.add(newGamePane);
 		
-		mainFrame.add(panel);
-		mainFrame.add(bimage);
-		mainFrame.setSize(499, 499);
-		mainFrame.setSize(500, 500);
+		main.add(contentPane);
+//		main.add(newGamePane);
+//		main.add(loadGamePane);
+//		main.add(exitGamePane);
 	}
 	
+<<<<<<< HEAD
+	public static void main(String[] args){
+		StartMenuGUI asdf = new StartMenuGUI();
+	}
+=======
+>>>>>>> master
 }
