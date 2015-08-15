@@ -1,5 +1,6 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
 import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
@@ -135,7 +136,7 @@ public class ElementalDamageUpgrade {
 
 		Utils.setElementalDamageUpdated_Water(true);
 		this.scale_Water += 0.2;
-		player.setElementalDamage_Air(this.scale_Water);
+		player.setElementalDamage_Water(this.scale_Water);
 
 		this.level_Water++;
 		Scaling.updateElementalDamageUpgrade_Water(this);
@@ -247,5 +248,27 @@ public class ElementalDamageUpgrade {
 	 */
 	protected void updatePrice_Fire(long newPrice) {
 		this.price_Fire = newPrice;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		ElementalDamageUpgrade edu = (ElementalDamageUpgrade) obj;
+		return ((this.level_Air == edu.level_Air)
+				&& (this.level_Water == edu.level_Water)
+				&& (this.level_Earth == edu.level_Earth)
+				&& (this.level_Fire == edu.level_Fire)
+				&& (this.price_Air == edu.price_Air)
+				&& (this.price_Water == edu.price_Water)
+				&& (this.price_Earth == edu.price_Earth)
+				&& (this.price_Fire == edu.price_Fire)
+				&& (this.scale_Air == edu.scale_Air)
+				&& (this.scale_Water == edu.scale_Water)
+				&& (this.scale_Earth == edu.scale_Earth) && (this.scale_Fire == edu.scale_Fire));
 	}
 }

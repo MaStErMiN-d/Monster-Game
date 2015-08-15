@@ -1,5 +1,6 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
 import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
@@ -57,7 +58,7 @@ public class LifeUpgrade {
 		player.setLife(life + this.healthUpgrade);
 
 		Scaling.updateLifeUpgrade(this);
-		level++;
+		this.level++;
 	}
 
 	/**
@@ -81,5 +82,19 @@ public class LifeUpgrade {
 	 */
 	protected void updateHealthUpgrade(long newValue) {
 		this.healthUpgrade = newValue;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		LifeUpgrade lu = (LifeUpgrade) obj;
+		return ((this.healthUpgrade == lu.healthUpgrade)
+				&& (this.level == lu.level) && (this.price == lu.price));
 	}
 }

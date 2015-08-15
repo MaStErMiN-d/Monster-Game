@@ -1,5 +1,6 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
 import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
@@ -57,7 +58,7 @@ public class PassiveDamageUpgrade {
 		player.setDamage(passiveDamage + this.passiveDamageUpgrade);
 
 		Scaling.updatePassiveDamageUpgrade(this);
-		level++;
+		this.level++;
 	}
 
 	/**
@@ -81,5 +82,19 @@ public class PassiveDamageUpgrade {
 	 */
 	protected void updatePassiveDamageUpgrade(long newValue) {
 		this.passiveDamageUpgrade = newValue;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		PassiveDamageUpgrade pdu = (PassiveDamageUpgrade) obj;
+		return ((this.level == pdu.level)
+				&& (this.passiveDamageUpgrade == pdu.passiveDamageUpgrade) && (this.price == pdu.price));
 	}
 }
