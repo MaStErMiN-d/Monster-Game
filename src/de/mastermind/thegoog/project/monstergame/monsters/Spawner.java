@@ -1,6 +1,7 @@
 package de.mastermind.thegoog.project.monstergame.monsters;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -17,7 +18,7 @@ public class Spawner extends Monsters {
 	private boolean continuousSpawning = false;
 	// private boolean isVisible;
 
-	private ArrayList<Monsters> monsterList = new ArrayList<Monsters>();
+	private LinkedList<Monsters> monsterList = new LinkedList<Monsters>();
 
 	/**
 	 * Initializes a new Spawner that can spawn Monsters frequently or
@@ -162,10 +163,18 @@ public class Spawner extends Monsters {
 	 * 
 	 * @return monsterList
 	 */
-	public ArrayList<Monsters> getMonsters() {
+	public LinkedList<Monsters> getMonsters() {
 		return monsterList;
 	}
 
+	/**
+	 * Removes specified monster from Spawners Monsterlist so it can spawn
+	 * @param monster
+	 */
+	public void removeMonsters(Monsters monster){
+		monsterList.remove(monster);
+	}
+	
 	/**
 	 * Returns true if Spawner is Visible
 	 * 
@@ -230,7 +239,7 @@ public class Spawner extends Monsters {
 		Spawner s = new Spawner(1, 0, null, true, 1, true, 100);
 		System.out.println(s.getBounty() + " | " + s.getVisibility());
 		s.spawnMonsters();
-		ArrayList<Monsters> ls = s.getMonsters();
+		LinkedList<Monsters> ls = s.getMonsters();
 		for (Monsters m : ls) {
 			System.out.println(m.getElementType() + " | " + m.getAppearance());
 		}
