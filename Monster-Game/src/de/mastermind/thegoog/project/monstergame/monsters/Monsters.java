@@ -151,14 +151,16 @@ public class Monsters implements Serializable {
 	 * @param dmg
 	 */
 	public void applyDamage(long dmg) {
+		// TODO schaden aller höhe erlauben, aber leben auf 0
 		if (dmg <= 0) {
 			throw new IllegalArgumentException(
 					"No Monster with 0 or less Damage allowed!");
 		} else {
-			this.health = health - dmg;
-
-			if (health <= 0) {
+			if (health < dmg) {
+				health = 0;
 				this.die();
+			} else {
+				this.health = health - dmg;
 			}
 		}
 	}
@@ -186,6 +188,7 @@ public class Monsters implements Serializable {
 	 */
 	private void die() {
 		appearance = AppearanceTypes.Invisible;
+		this.setDamage(0);
 		// TODO Monster dies
 	}
 
