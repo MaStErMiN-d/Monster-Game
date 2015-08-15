@@ -1,6 +1,8 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
+import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
 /**
  * 
@@ -256,5 +258,83 @@ public class Upgrades {
 	 */
 	public long getElementalDamageUpgradePrice_Fire() {
 		return edu.getElementalDamageUpgradePrice_Fire();
+	}
+
+	/**
+	 * Returns current level for Life-Upgrade
+	 * 
+	 * @return level
+	 */
+	public long getLifeUpgradeLevel() {
+		return lu.getLifeUpgradeLevel();
+	}
+
+	/**
+	 * Returns current level for Click-Damage-Upgrade
+	 * 
+	 * @return level
+	 */
+	public long getClickDamageUpgradeLevel() {
+		return cdu.getClickDamageUpgradeLevel();
+	}
+
+	/**
+	 * Returns current level for Passive-Damage-Upgrade
+	 * 
+	 * @return level
+	 */
+	public long getPassiveDamageUpgradeLevel() {
+		return pdu.getPassiveDamageUpgradeLevel();
+	}
+
+	/**
+	 * Returns current level for elemental Damage-Upgrade for Element Air
+	 * 
+	 * @return level_Air
+	 */
+	public long getElementalDamageUpgradeLevel_Air() {
+		return edu.getElementalDamageUpgradeLevel_Air();
+	}
+
+	/**
+	 * Returns current level for elemental Damage-Upgrade for Element Water
+	 * 
+	 * @return level_Water
+	 */
+	public long getElementalDamageUpgradeLevel_Water() {
+		return edu.getElementalDamageUpgradeLevel_Water();
+	}
+
+	/**
+	 * Returns current level for elemental Damage-Upgrade for Element Earth
+	 * 
+	 * @return level_Earth
+	 */
+	public long getElementalDamageUpgradeLevel_Earth() {
+		return edu.getElementalDamageUpgradeLevel_Earth();
+	}
+
+	/**
+	 * Returns current level for elemental Damage-Upgrade for Element Fire
+	 * 
+	 * @return level_Fire
+	 */
+	public long getElementalDamageUpgradeLevel_Fire() {
+		return edu.getElementalDamageUpgradeLevel_Fire();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		Upgrades u = (Upgrades) obj;
+		return (this.cdu.equals(u.cdu)) && (this.edu.equals(u.edu))
+				&& (this.lu.equals(u.lu)) && (this.pdu.equals(u.pdu))
+				&& (this.player.equals(u.player));
 	}
 }
