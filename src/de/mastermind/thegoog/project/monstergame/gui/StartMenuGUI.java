@@ -59,9 +59,4 @@ public class StartMenuGUI {
 		mainFrame.setSize(500, 500);
 	}
 	
-	public static void main(String[] args){
-		StartMenuGUI asdf = new StartMenuGUI();
-		
-	}
-	
 }

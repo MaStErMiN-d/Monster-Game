@@ -1,5 +1,8 @@
 package de.mastermind.thegoog.project.monstergame.utils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * 
  * @author Michael Zigldrum
@@ -10,12 +13,19 @@ package de.mastermind.thegoog.project.monstergame.utils;
 public class Utils {
 
 	private static boolean lifeUpdated = false;
-	private static boolean monsterlifeUpdated = false;
+	private static boolean monsterLifeUpdated = false;
 	private static boolean clickDamageUpdated = false;
 	private static boolean passiveDamageUpdated = false;
 	private static boolean monsterDamageUpdated = false;
 	private static boolean levelUpdated = false;
 	private static boolean accountUpdated = false;
+	private static boolean elementalDamageUpdated_Air = false;
+	private static boolean elementalDamageUpdated_Water = false;
+	private static boolean elementalDamageUpdated_Earth = false;
+	private static boolean elementalDamageUpdated_Fire = false;
+
+	private static boolean setUpgrades = false;
+	private static boolean setItems = false;
 
 	private static long level = 0;
 
@@ -26,6 +36,60 @@ public class Utils {
 	 */
 	public static void setLevel(long updatedLevel) {
 		Utils.level = updatedLevel;
+	}
+
+	/**
+	 * Sets if Players personal Upgrades have been set
+	 * 
+	 * @param upgradesSet
+	 */
+	public static void setUpgrades(boolean upgradesSet) {
+		Utils.setUpgrades = upgradesSet;
+	}
+
+	/**
+	 * Sets if Players personal Items have been set
+	 * 
+	 * @param itemsSet
+	 */
+	public static void setItems(boolean itemsSet) {
+		Utils.setItems = itemsSet;
+	}
+
+	/**
+	 * Sets if Players elemental Damage for Air-Monsters has been updated
+	 * 
+	 * @param elemUpdated
+	 */
+	public static void setElementalDamageUpdated_Air(boolean elemUpdated) {
+		Utils.elementalDamageUpdated_Air = elemUpdated;
+	}
+
+	/**
+	 * Sets if Players elemental Damage for Water-Monsters has been updated
+	 * 
+	 * @param elemUpdated
+	 */
+	public static void setElementalDamageUpdated_Water(boolean elemUpdated) {
+		Utils.elementalDamageUpdated_Water = elemUpdated;
+	}
+
+	/**
+	 * Sets if Players elemental Damage for Earth-Monsters has been updated
+	 * 
+	 * @param elemUpdated
+	 */
+	public static void setElementalDamageUpdated_Earth(boolean elemUpdated) {
+		Utils.elementalDamageUpdated_Earth = elemUpdated;
+	}
+
+	/**
+	 * Sets if Players elemental Damage for Fire-Monsters has been updated
+	 * 
+	 * @param elemUpdated
+	 */
+	public static void setElementalDamageUpdated_Fire(boolean elemUpdated) {
+		Utils.elementalDamageUpdated_Fire = elemUpdated;
 	}
 
 	/**
@@ -42,8 +106,8 @@ public class Utils {
 	 * 
 	 * @param monsterlifeUpdated
 	 */
-	public static void setMonsterlifeUpdated(boolean monsterlifeUpdated) {
-		Utils.monsterlifeUpdated = monsterlifeUpdated;
+	public static void setMonsterLifeUpdated(boolean monsterlifeUpdated) {
+		Utils.monsterLifeUpdated = monsterlifeUpdated;
 	}
 
 	/**
@@ -114,8 +178,8 @@ public class Utils {
 	 * 
 	 * @return monsterLifeUpdated
 	 */
-	public static boolean getMonsterlifeUpdated() {
-		return monsterlifeUpdated;
+	public static boolean getMonsterLifeUpdated() {
+		return monsterLifeUpdated;
 	}
 
 	/**
@@ -155,6 +219,63 @@ public class Utils {
 	}
 
 	/**
+	 * Return true if Players elemental Damage for Air-Monsters has been updated
+	 * 
+	 * @return elemUpdated
+	 */
+	public static boolean getElementalDamageUpdated_Air() {
+		return Utils.elementalDamageUpdated_Air;
+	}
+
+	/**
+	 * Returns true if Players elemental Damage for Water-Monsters has been
+	 * updated
+	 * 
+	 * @return elemUpdated
+	 */
+	public static boolean getElementalDamageUpdated_Water() {
+		return Utils.elementalDamageUpdated_Water;
+	}
+
+	/**
+	 * Returns true if Players elemental Damage for Earth-Monsters has been
+	 * updated
+	 * 
+	 * @return elemUpdated
+	 */
+	public static boolean getElementalDamageUpdated_Earth() {
+		return Utils.elementalDamageUpdated_Earth;
+	}
+
+	/**
+	 * Returns true if Players elemental Damage for Fire-Monsters has been
+	 * updated
+	 * 
+	 * @return elemUpdated
+	 */
+	public static boolean getElementalDamageUpdated_Fire() {
+		return Utils.elementalDamageUpdated_Fire;
+	}
+
+	/**
+	 * Returns true if Players personal Upgrades have been set
+	 * 
+	 * @param upgradesSet
+	 */
+	public static boolean getUpgradesSet() {
+		return Utils.setUpgrades;
+	}
+
+	/**
+	 * Returns true if Players personal Items have been set
+	 * 
+	 * @param itemsSet
+	 */
+	public static boolean getItemsSet() {
+		return Utils.setItems;
+	}
+
+	/**
 	 * Returns true if Level has been updated
 	 * 
 	 * @return levelUpdated
@@ -170,7 +291,7 @@ public class Utils {
 	 * @param isSpawner
 	 * @return bounty
 	 */
-	public static long getBounty(boolean isBoss, boolean isSpawner) {
+	public static long getMonsterBounty(boolean isBoss, boolean isSpawner) {
 		return Bounty.calcBounty(level, isBoss, isSpawner);
 	}
 
@@ -183,5 +304,37 @@ public class Utils {
 	 */
 	public static long getMonsterDamage(boolean isBoss, boolean isSpawner) {
 		return Damage.calcDamage(level, isBoss, isSpawner);
+	}
+
+	/**
+	 * Returns health for a certain kind of Monster
+	 * 
+	 * @param isBoss
+	 * @param isSpawner
+	 * @return
+	 */
+	public static long getMonsterHealth(boolean isBoss, boolean isSpawner) {
+		return Health.calcHealth(level, isBoss, isSpawner);
+	}
+
+	// TODO Consider quote to
+	// http://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+	/**
+	 * Rounds a double to a given Number of places behind the comma. E.g.:
+	 * round(1.234567, 2) returns 1.23
+	 * 
+	 * @param value
+	 * @param places
+	 * @return
+	 */
+	public static double round(double value, int places) {
+		if (places < 0) {
+			throw new IllegalArgumentException(
+					"Can't round with less than 0 places after the comma!");
+		}
+
+		BigDecimal tmp = new BigDecimal(value);
+		tmp = tmp.setScale(places, RoundingMode.HALF_UP);
+		return tmp.doubleValue();
 	}
 }
