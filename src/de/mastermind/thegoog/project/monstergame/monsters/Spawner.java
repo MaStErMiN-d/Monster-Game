@@ -1,5 +1,9 @@
 package de.mastermind.thegoog.project.monstergame.monsters;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> 67b142806e625901a029aa7e65c2afa9e5af9268
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -170,6 +174,14 @@ public class Spawner extends Monsters {
 	}
 
 	/**
+	 * Removes specified monster from Spawners Monsterlist so it can spawn
+	 * @param monster
+	 */
+	public void removeMonsters(Monsters monster){
+		monsterList.remove(monster);
+	}
+	
+	/**
 	 * Returns true if Spawner is Visible
 	 * 
 	 * @return isVisible
@@ -231,10 +243,20 @@ public class Spawner extends Monsters {
 		return super.isBossMonster();
 	}
 
+<<<<<<< HEAD
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) {
 			return true;
+=======
+	public static void main(String[] args) {
+		Spawner s = new Spawner(1, 0, null, true, 1, true, 100);
+		System.out.println(s.getBounty() + " | " + s.getVisibility());
+		s.spawnMonsters();
+		LinkedList<Monsters> ls = s.getMonsters();
+		for (Monsters m : ls) {
+			System.out.println(m.getElementType() + " | " + m.getAppearance());
+>>>>>>> 67b142806e625901a029aa7e65c2afa9e5af9268
 		}
 		if (obj == null || obj.getClass() != this.getClass()) {
 			return false;
