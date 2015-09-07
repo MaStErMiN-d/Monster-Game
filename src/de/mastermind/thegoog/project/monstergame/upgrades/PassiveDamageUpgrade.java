@@ -1,5 +1,6 @@
 package de.mastermind.thegoog.project.monstergame.upgrades;
 
+import de.mastermind.thegoog.project.monstergame.item.Items;
 import de.mastermind.thegoog.project.monstergame.monsters.Player;
 import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
@@ -20,8 +21,8 @@ public class PassiveDamageUpgrade {
 	 * Initializes the Passive-Damage-Upgrade
 	 */
 	protected PassiveDamageUpgrade() {
-		price = 0;
-		passiveDamageUpgrade = 500;
+		price = 400;
+		passiveDamageUpgrade = 50;
 	}
 
 	/**
@@ -46,24 +47,54 @@ public class PassiveDamageUpgrade {
 	 * Purchases the Passive-Damage-Upgrade
 	 */
 	protected void purchaseUpgrade(Player player) {
-		level++;
 		long playerAccount = player.getMoney();
 		long upgradeCosts = this.getPrice();
+
 		Utils.setAccountUpdated(true);
 		player.setAccount(playerAccount - upgradeCosts);
+
+		Utils.setPassiveDamageUpdated(true);
+		long passiveDamage = player.getDamage();
+		player.setDamage(passiveDamage + this.passiveDamageUpgrade);
+
+		Scaling.updatePassiveDamageUpgrade(this);
+		this.level++;
 	}
-	
+
+	/**
+	 * Returns current Passive-Damage-Upgrades Level
+	 * 
+	 * @return level
+	 */
+	protected long getPassiveDamageUpgradeLevel() {
+		return this.level;
+	}
+
 	/**
 	 * Updates the Passive-Damage-Upgrades price
 	 */
-	protected void updatePrice() {
-		
+	protected void updatePrice(long newPrice) {
+		this.price = newPrice;
 	}
-	
+
 	/**
 	 * Updates the Passive-Damage-Upgrades value
 	 */
-	protected void updatePassiveDamageUpgrade() {
-		
+	protected void updatePassiveDamageUpgrade(long newValue) {
+		this.passiveDamageUpgrade = newValue;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		PassiveDamageUpgrade pdu = (PassiveDamageUpgrade) obj;
+		return ((this.level == pdu.level)
+				&& (this.passiveDamageUpgrade == pdu.passiveDamageUpgrade) && (this.price == pdu.price));
 	}
 }

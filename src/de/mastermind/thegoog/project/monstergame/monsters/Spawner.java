@@ -1,7 +1,12 @@
 package de.mastermind.thegoog.project.monstergame.monsters;
 
 import java.util.ArrayList;
+
+import java.util.LinkedList;
 import java.util.Random;
+
+import de.mastermind.thegoog.project.monstergame.item.Items;
+import de.mastermind.thegoog.project.monstergame.utils.Utils;
 
 /**
  * 
@@ -17,7 +22,7 @@ public class Spawner extends Monsters {
 	private boolean continuousSpawning = false;
 	// private boolean isVisible;
 
-	private ArrayList<Monsters> monsterList = new ArrayList<Monsters>();
+	private LinkedList<Monsters> monsterList = new LinkedList<Monsters>();
 
 	/**
 	 * Initializes a new Spawner that can spawn Monsters frequently or
@@ -162,8 +167,17 @@ public class Spawner extends Monsters {
 	 * 
 	 * @return monsterList
 	 */
-	public ArrayList<Monsters> getMonsters() {
+	public LinkedList<Monsters> getMonsters() {
 		return monsterList;
+	}
+
+	/**
+	 * Removes specified monster from Spawners Monsterlist so it can spawn
+	 * 
+	 * @param monster
+	 */
+	public void removeMonsters(Monsters monster) {
+		monsterList.remove(monster);
 	}
 
 	/**
@@ -206,19 +220,21 @@ public class Spawner extends Monsters {
 			int counter = maximumMonsters - monsterCount;
 
 			do {
-				// TODO get Health, Damage & Bounty from Utils
-				Monsters tmp = new Monsters(0, 0, ElementTypes.get(ran
-						.nextInt(4)), false, AppearanceTypes.getMonsters(ran
-						.nextInt(2)), 0);
+				Monsters tmp = new Monsters(
+						Utils.getMonsterHealth(false, false),
+						Utils.getMonsterDamage(false, false),
+						ElementTypes.get(ran.nextInt(4)), false,
+						AppearanceTypes.getMonsters(ran.nextInt(2)),
+						Utils.getMonsterBounty(false, false));
+
 				monsterList.add(tmp);
 				counter--;
 			} while (counter > 0);
-
 		}
 	}
 
 	/**
-	 * Returns true is Spawner is a Boss
+	 * Returns true if Spawner is a Boss
 	 * 
 	 * @return isBoss
 	 */
@@ -226,13 +242,30 @@ public class Spawner extends Monsters {
 		return super.isBossMonster();
 	}
 
-	public static void main(String[] args) {
-		Spawner s = new Spawner(1, 0, null, true, 1, true, 100);
-		System.out.println(s.getBounty() + " | " + s.getVisibility());
-		s.spawnMonsters();
-		ArrayList<Monsters> ls = s.getMonsters();
-		for (Monsters m : ls) {
-			System.out.println(m.getElementType() + " | " + m.getAppearance());
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
 		}
+		return false;
 	}
+
+//	public static void main(String[] args) {
+//		Spawner s = new Spawner(1, 0, null, true, 1, true, 100);
+//		System.out.println(s.getBounty() + " | " + s.getVisibility());
+//		s.spawnMonsters();
+//		LinkedList<Monsters> ls = s.getMonsters();
+//		for (Monsters m : ls) {
+//			System.out.println(m.getElementType() + " | " + m.getAppearance());
+//
+//		}
+//		if (obj == null || obj.getClass() != this.getClass()) {
+//			return false;
+//		}
+//
+//		Spawner s = (Spawner) obj;
+//		return (this.continuousSpawning == s.continuousSpawning)
+//				&& (this.maximumMonsters == s.maximumMonsters)
+//				&& (this.monsterList.equals(s.monsterList) && super.equals(s));
+//	}
 }
