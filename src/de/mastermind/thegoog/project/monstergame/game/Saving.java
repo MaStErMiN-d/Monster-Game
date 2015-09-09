@@ -7,6 +7,7 @@ import de.mastermind.thegoog.project.monstergame.monsters.*;
 
 public class Saving {
 
+	//TODO Implement final saving variables
 	LinkedList<Monsters> monstersInGame;
 	
 	public Saving(LinkedList<Monsters> monstersInGame, Player player){

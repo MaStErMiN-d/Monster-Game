@@ -3,16 +3,16 @@ package de.mastermind.thegoog.project.monstergame.utils;
 public class Bounty {
 
 	/**
-	 * Calculates Bounty for a certain kind of Enemy
+	 * Calculates bounty of a Monster, a Spawner or a Boss relative to the
+	 * Games' level
 	 * 
 	 * @param level
 	 * @param isBoss
 	 * @param isSpawner
 	 * @return bounty
-	 * @throws IllegalArgumentException
 	 */
-	protected static long calcBounty(long level, boolean isBoss, boolean isSpawner)
-			throws IllegalArgumentException {
+	protected static long calcBounty(long level, boolean isBoss,
+			boolean isSpawner) {
 		long bounty = 0;
 
 		level--;
@@ -53,11 +53,39 @@ public class Bounty {
 
 		}
 
+		if (isBoss) {
+			bounty = calcBossBounty(bounty);
+		}
+
+		if (isSpawner) {
+			bounty = calcSpawnerBounty(bounty);
+		}
+
 		if (bounty > 0) {
 			return bounty;
 		} else {
 			throw new IllegalArgumentException("Bounty got defined 0 or less!");
 		}
+	}
+
+	/**
+	 * Returns bounty of a Boss relative to its Monsters' bounty
+	 * 
+	 * @param bounty
+	 * @return newBounty
+	 */
+	private static long calcBossBounty(long bounty) {
+		return 5 * bounty;
+	}
+
+	/**
+	 * Returns bounty of a Spawner relative to its Monsters' bounty
+	 * 
+	 * @param bounty
+	 * @return newBounty
+	 */
+	private static long calcSpawnerBounty(long bounty) {
+		return (long) (2.5 * bounty);
 	}
 
 }
