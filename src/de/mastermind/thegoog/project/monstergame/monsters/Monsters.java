@@ -1,6 +1,7 @@
 package de.mastermind.thegoog.project.monstergame.monsters;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -10,6 +11,9 @@ import java.io.Serializable;
  */
 
 public class Monsters implements Serializable {
+
+	private static long staticSerialID = 0;
+	private long serialID = 0;
 
 	private boolean isBoss = false;
 
@@ -50,6 +54,7 @@ public class Monsters implements Serializable {
 			this.appearance = initAppearance;
 			this.bounty = initBounty;
 		}
+		this.serialID = generateSerialID();
 	}
 
 	/**
@@ -102,9 +107,9 @@ public class Monsters implements Serializable {
 	 * @param dmg
 	 */
 	public void setDamage(long dmg) {
-		if (dmg <= 0) {
+		if (dmg < 0) {
 			throw new IllegalArgumentException(
-					"No Monster with 0 or less Damage allowed!");
+					"No Monster with less than 0 Damage allowed!");
 		} else {
 			this.damage = dmg;
 		}
@@ -151,14 +156,15 @@ public class Monsters implements Serializable {
 	 * @param dmg
 	 */
 	public void applyDamage(long dmg) {
-		if (dmg <= 0) {
+		if (dmg < 0) {
 			throw new IllegalArgumentException(
 					"No Monster with 0 or less Damage allowed!");
 		} else {
-			this.health = health - dmg;
-
-			if (health <= 0) {
+			if (health <= dmg) {
+				health = 0;
 				this.die();
+			} else {
+				this.health = health - dmg;
 			}
 		}
 	}
@@ -186,9 +192,70 @@ public class Monsters implements Serializable {
 	 */
 	private void die() {
 		appearance = AppearanceTypes.Invisible;
+		if (!(this.getClass() == Player.class)) {
+			this.setDamage(0);
+		}
 		// TODO Monster dies
+	}
+
+	private static long generateSerialID() {
+		staticSerialID++;
+		return staticSerialID % 9999;
+	}
+
+	public long getSerialID() {
+		return this.serialID;
+	}
+
+	public static void main(String[] args) {
+		Player p = new Player(100, 10, 25);
+		System.out.println("PlayerID: " + p.getSerialID());
+		Spawner s = new Spawner(1, 1, ElementTypes.Air_Type, false, 3, true, 1);
+		System.out.println("SpawnerID: " + s.getSerialID());
+		s.spawnMonsters();
+		List<Monsters> ls = s.getMonsters();
+		for (int i = 0; i <= 800; i++) {
+			System.out.println("\nDurchlauf " + i + ":");
+			int k = 0;
+			for (Monsters m : ls) {
+				System.out.println("Monster " + k + ": " + m.toString()
+						+ "\tID: " + m.getSerialID());
+				k++;
+			}
+			while (ls.size() > 0) {
+				s.removeMonster(ls.get(0));
+			}
+			s.spawnMonsters();
+		}
 	}
 
 	// TODO Think of more Methods required of Monsters.
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		Monsters monster = (Monsters) obj;
+		return ((this.appearance == monster.appearance)
+				&& (this.bounty == monster.bounty)
+				&& (this.damage == monster.damage)
+				&& (this.element == monster.element)
+				&& (this.health == monster.health) && (this.isBoss == monster.isBoss));
+	}
+
+	@Override
+	public String toString() {
+		StringBuffer s = new StringBuffer();
+		s.append(this.damage);
+		s.append(" ");
+		s.append(this.health);
+		s.append(" ");
+		s.append(this.appearance);
+		return s.toString();
+	}
 }

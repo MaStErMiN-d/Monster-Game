@@ -1,0 +1,23 @@
+#dmgNrLeft {
+	-fx-font-size: 20;
+	-fx-font-weight: bold;
+	-fx-text-fill: ORANGE;
+}
+
+#dmgNrMiddle {
+	-fx-font-size: 20;
+	-fx-font-weight: bold;
+	-fx-text-fill: DARKMAGENTA;
+}
+
+#dmgNrRight {
+	-fx-font-size: 20;
+	-fx-font-weight: bold;
+	-fx-text-fill: TEAL;
+}
+
+#dmgNrSpawner {
+	-fx-font-size: 20;
+	-fx-font-weight: bold;
+	-fx-text-fill: FIREBRICK;//GOLDENROD;
+}

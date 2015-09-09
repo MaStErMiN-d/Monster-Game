@@ -47,6 +47,7 @@ public enum AppearanceTypes {
 
 	/**
 	 * Returns the AppearanceType for Monsters at Index, starting at 0
+	 * If no valid Index was given, it will return null.
 	 * 
 	 * @param pos
 	 * @return AppearanceTypes
@@ -68,7 +69,8 @@ public enum AppearanceTypes {
 	}
 
 	/**
-	 * Returns AppearanceType for Bosses at Index, starting at Index 0
+	 * Returns AppearanceType for Bosses at Index, starting at Index 0.
+	 * If no valid Index was given, it will return null.
 	 * 
 	 * @param pos
 	 * @return AppearanceTypes

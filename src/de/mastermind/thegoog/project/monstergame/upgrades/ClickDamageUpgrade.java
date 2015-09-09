@@ -20,8 +20,8 @@ public class ClickDamageUpgrade {
 	 * Initializes the Click-Damage-Upgrade
 	 */
 	protected ClickDamageUpgrade() {
-		price = 0;
-		clickDamageUpgrade = 50;
+		price = 250;
+		clickDamageUpgrade = 200;
 	}
 
 	/**
@@ -46,8 +46,6 @@ public class ClickDamageUpgrade {
 	 * Purchases the Click-Damage-Upgrade
 	 */
 	protected void purchaseUpgrade(Player player) {
-		level++;
-
 		long playerAccount = player.getMoney();
 		long upgradeCosts = this.getPrice();
 
@@ -57,21 +55,44 @@ public class ClickDamageUpgrade {
 		Utils.setClickDamageUpdated(true);
 		long clickDamage = player.getClickDamage();
 		player.setClickDamage(clickDamage + this.clickDamageUpgrade);
-		
+
 		Scaling.updateClickDamageUpgrade(this);
+		this.level++;
 	}
-	
+
+	/**
+	 * Returns current Click-Damage-Upgrades Level
+	 * 
+	 * @return level
+	 */
+	protected long getClickDamageUpgradeLevel() {
+		return this.level;
+	}
+
 	/**
 	 * Updates the Click-Damage-Upgrades price
 	 */
-	protected void updatePrice() {
-		
+	protected void updatePrice(long newPrice) {
+		this.price = newPrice;
 	}
-	
+
 	/**
 	 * Updates the Click-Damage-Upgrades value
 	 */
-	protected void updateClickDamageUpgrade() {
-		
+	protected void updateClickDamageUpgrade(long newValue) {
+		this.clickDamageUpgrade = newValue;
+	}
+
+	public boolean equals(Object obj) {
+		if (obj == this) {
+			return true;
+		}
+		if (obj == null || obj.getClass() != this.getClass()) {
+			return false;
+		}
+
+		ClickDamageUpgrade cdu = (ClickDamageUpgrade) obj;
+		return ((this.clickDamageUpgrade == cdu.clickDamageUpgrade)
+				&& (this.level == cdu.level) && (this.price == cdu.price));
 	}
 }

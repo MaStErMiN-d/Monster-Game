@@ -1,0 +1,61 @@
+/*.button, .button:selected, .button:hover {
+	-fx-fill: transparent;
+}*/
+
+#dead {
+	-fx-fill: TRANSPARENT;
+}
+
+#Menu-Label {
+	-fx-font-weight: bold;
+	-fx-font-size: 13px;
+}
+
+#Game, #Game:selected, #Game:hover {
+	-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-background-insets: -1.4, 0, 1, 2;
+	-fx-outer-border: transparent;
+	-fx-inner-border: transparent;
+	-fx-border-radius: 0;
+	-fx-border-style: hidden, hidden, hidden, hidden;
+	-fx-focus-border-style: hidden, hidden, hidden, hidden;
+}
+
+#Menu, #Menu:selected, #Menu:hover {
+	/*-fx-focus-color: DARKMAGENTA;*/
+	-fx-background-color: 
+        #707070,
+        linear-gradient(#fcfcfc, #f3f3f3),
+        linear-gradient(#f2f2f2 0%, #ebebeb 49%, #dddddd 50%, #cfcfcf 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 3,2,1;
+    /*-fx-padding: 3 30 3 30;*/
+    -fx-text-fill: black;
+    /*-fx-font-size: 14px;*/
+}
+/*#Game, #Game:selected, #Game:hover {
+	-fx-focus-color: GREEN;
+	-fx-faint-focus-color: BLUE;
+	-fx-inner-border: YELLOW;
+	-fx-outer-border: RED;
+}*/
+
+#Empty, #Empty:selected, #Empty:hover {
+	-fx-fill: TRANSPARENT;
+	/*-fx-focus-color: transparent;
+	-fx-faint-focus-color: transparent;
+	-fx-background-insets: -1.4, 0, 1, 2;
+	-fx-outer-border: transparent;
+	-fx-inner-border: transparent;
+	-fx-border-radius: 0;
+	-fx-border-style: hidden, hidden, hidden, hidden;
+	-fx-focus-border-style: hidden, hidden, hidden, hidden;*/
+}
+
+.tooltip {
+	-fx-background-color: DARKGREY;
+	-fx-font-size: 14;
+	-fx-font-weight: bold;
+	/*-fx-text-fill: ORANGE;*/
+}

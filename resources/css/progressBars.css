@@ -1,0 +1,60 @@
+.bar-mockup > .bar {
+	-fx-background-color: linear-gradient(
+        from 0px .75em to .75em 0px,
+        repeat,
+        -fx-accent 0%,
+        -fx-accent 49%,
+        derive(-fx-accent, 30%) 50%,
+        derive(-fx-accent, 30%) 99%
+    );
+}
+
+.progress-bar {
+	-fx-background-color: TRANSPARENT;
+	-fx-accent: DARKMAGENTA;
+}
+
+.progress-bar > .track {
+	-fx-text-box-border: BLACK;
+	-fx-control-inner-background: LIGHTGREY;
+}
+
+.green-bar {
+	-fx-background-color: TRANSPARENT;
+	-fx-accent: green;
+}
+
+.green-bar > .track {
+	-fx-text-box-border: BLACK;
+	-fx-control-inner-background: LIGHTGREY;
+}
+
+.yellow-bar {
+	-fx-background-color: TRANSPARENT;
+	-fx-accent: GOLD;/*yellow;*/
+}
+
+.yellow-bar > .track {
+	-fx-text-box-border: BLACK;
+	-fx-control-inner-background: LIGHTGREY;
+}
+
+.orange-bar {
+	-fx-background-color: TRANSPARENT;
+	-fx-accent: ORANGERED;/*orange;*/
+}
+
+.orange-bar > .track {
+	-fx-text-box-border: BLACK;
+	-fx-control-inner-background: LIGHTGREY;
+}
+
+.red-bar {
+	-fx-background-color: TRANSPARENT;
+	-fx-accent: red;
+}
+
+.red-bar > .track {
+	-fx-text-box-border: BLACK;
+	-fx-control-inner-background: LIGHTGREY;
+}

@@ -10,10 +10,11 @@ package de.mastermind.thegoog.project.monstergame.monsters;
  */
 public enum ElementTypes {
 
-	Water_Type, Fire_Type, Earth_Type, Air_Type;
+	Air_Type, Water_Type, Earth_Type, Fire_Type;
 
 	/**
-	 * Returns ElementType by Index, starting at 0
+	 * Returns ElementType by Index, starting at 0 If no valid Index was given,
+	 * it will return null.
 	 * 
 	 * @param pos
 	 * @return ElementTypes
@@ -25,13 +26,13 @@ public enum ElementTypes {
 			elem = ElementTypes.Air_Type;
 			break;
 		case 1:
-			elem = ElementTypes.Earth_Type;
+			elem = ElementTypes.Water_Type;
 			break;
 		case 2:
-			elem = ElementTypes.Fire_Type;
+			elem = ElementTypes.Earth_Type;
 			break;
 		case 3:
-			elem = ElementTypes.Water_Type;
+			elem = ElementTypes.Fire_Type;
 			break;
 		default:
 			elem = null;

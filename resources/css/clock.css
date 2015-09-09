@@ -1,0 +1,5 @@
+.DigitalClock .text {
+    -fx-effect: dropshadow( one-pass-box , rgba(100, 100, 100, 0.5) , 0, 0.0 , 0 , 1 );
+    -fx-font-weight: bold;
+    /*-fx-fill:  linear-gradient(cyan , dodgerblue);*/
+}
